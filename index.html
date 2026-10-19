@@ -1,468 +1,699 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="小日慢學 Little Days 親子共學教材下載區，每天一點點，陪孩子慢慢學。">
-  <title>教材下載區｜小日慢學 Little Days</title>
-  <style>
-    :root {
-      --bg: #FFF9F2;
-      --paper: #FFFEFB;
-      --peach: #F2D4BF;
-      --accent: #A76847;
-      --text: #554A42;
-      --muted: #786B61;
-      --line: #EADFD3;
-      --green: #E6EBDC;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      line-height: 1.8;
-    }
-
-    a { color: inherit; }
-    button { font: inherit; }
-
-    .wrap {
-      width: min(100% - 40px, 1020px);
-      margin: auto;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 25px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .brand {
-      text-decoration: none;
-      font-size: 23px;
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
-
-    .brand small {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: var(--muted);
-    }
-
-    nav { display: flex; gap: 20px; }
-    nav a { font-size: 13px; text-decoration: none; }
-
-    .hero {
-      padding: 65px 0 50px;
-      text-align: center;
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--accent);
-    }
-
-    h1 {
-      font-size: clamp(30px, 6vw, 46px);
-      line-height: 1.6;
-      letter-spacing: 3px;
-      margin: 18px 0;
-    }
-
-    h1 span { color: var(--accent); }
-
-    .hero p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .hero-link {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 11px 24px;
-      background: var(--text);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-size: 14px;
-    }
-
-    .note {
-      text-align: center;
-      padding: 18px;
-      background: #F5EADD;
-      border-radius: 12px;
-      font-size: 14px;
-    }
-
-    section { scroll-margin-top: 25px; }
-
-    .library { padding: 45px 0; }
-
-    h2 {
-      font-size: 25px;
-      letter-spacing: 2px;
-      margin: 0 0 10px;
-    }
-
-    .intro {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0 0 24px;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .tabs button {
-      padding: 8px 20px;
-      border: 1px solid var(--line);
-      border-radius: 25px;
-      color: var(--text);
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .tabs button[aria-pressed="true"] {
-      background: var(--text);
-      color: white;
-      border-color: var(--text);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      overflow: hidden;
-    }
-
-    .cover {
-      min-height: 190px;
-      display: grid;
-      place-items: center;
-      background: var(--peach);
-      text-align: center;
-      padding: 25px;
-    }
-
-    .cover.paid { background: var(--green); }
-
-    .cover-paper {
-      background: var(--paper);
-      border-radius: 7px;
-      padding: 20px 35px;
-      box-shadow: 5px 7px 0 #554A4210;
-      transform: rotate(-4deg);
-    }
-
-    .cover-paper small {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--muted);
-    }
-
-    .cover-paper strong {
-      display: block;
-      margin: 8px 0;
-      font-size: 22px;
-      letter-spacing: 3px;
-    }
-
-    .shapes {
-      color: var(--accent);
-      font-size: 25px;
-      letter-spacing: 9px;
-    }
-
-    .content { padding: 25px; }
-
-    .badge {
-      display: inline-block;
-      background: var(--green);
-      padding: 3px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-    }
-
-    .badge.soon { background: #F0E8DE; }
-
-    h3 { margin: 14px 0 10px; font-size: 21px; }
-
-    .content p {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0 0 20px;
-    }
-
-    .download {
-      display: block;
-      text-align: center;
-      background: var(--text);
-      color: white;
-      padding: 11px 15px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .waiting {
-      text-align: center;
-      padding: 11px 15px;
-      border-radius: 8px;
-      background: #F1EBE3;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .guide {
-      background: #F3EBDD;
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 40px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 25px;
-      margin-top: 20px;
-    }
-
-    .steps strong { color: var(--accent); }
-
-    .steps p {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 0;
-    }
-
-    .terms { padding-bottom: 40px; }
-
-    .terms p, .terms li {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .terms ul { padding-left: 22px; }
-    .terms li { margin-bottom: 8px; }
-
-    details {
-      border-bottom: 1px solid var(--line);
-      padding: 15px 0;
-    }
-
-    summary { cursor: pointer; font-size: 14px; }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 25px 0;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    [hidden] { display: none !important; }
-
-    a:focus-visible,
-    button:focus-visible,
-    summary:focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 4px;
-    }
-
-    @media (max-width: 640px) {
-      header { align-items: flex-start; }
-      .brand { font-size: 20px; }
-      nav { gap: 12px; padding-top: 5px; }
-      nav a { font-size: 12px; }
-      .hero { padding: 45px 0 35px; }
-      .hero p { font-size: 14px; }
-      .grid, .steps { grid-template-columns: 1fr; }
-      .guide { padding: 24px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="小日慢學 Little Days 教材下載區，依主題搜尋親子共學教材。">
+<title>教材下載區｜小日慢學 Little Days</title>
+<style>
+:root {
+  --bg:#FFF9F2;
+  --paper:#FFFEFB;
+  --peach:#F2D4BF;
+  --accent:#A76847;
+  --text:#554A42;
+  --muted:#786B61;
+  --line:#EADFD3;
+  --green:#E6EBDC;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  line-height:1.8;
+}
+a { color:inherit; }
+button,input,select { font:inherit; }
+button { cursor:pointer; }
+.wrap { width:min(100% - 40px,1060px); margin:auto; }
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:25px 0;
+  border-bottom:1px solid var(--line);
+}
+.brand {
+  text-decoration:none;
+  font-size:23px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
+.brand small {
+  display:block;
+  font-size:10px;
+  letter-spacing:3px;
+  color:var(--muted);
+}
+nav { display:flex; gap:20px; }
+nav a { font-size:13px; text-decoration:none; }
+.hero { padding:55px 0 40px; text-align:center; }
+.eyebrow {
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--accent);
+}
+h1 {
+  font-size:clamp(30px,6vw,44px);
+  line-height:1.6;
+  letter-spacing:3px;
+  margin:18px 0;
+}
+h1 span { color:var(--accent); }
+.hero p { color:var(--muted); font-size:14px; }
+.note {
+  text-align:center;
+  padding:16px;
+  background:#F5EADD;
+  border-radius:12px;
+  font-size:14px;
+}
+section { scroll-margin-top:25px; }
+.library { padding:40px 0; }
+h2 { font-size:25px; letter-spacing:2px; margin:0 0 10px; }
+.intro { color:var(--muted); font-size:14px; margin:0 0 24px; }
+.controls {
+  padding:24px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--paper);
+}
+.search-label {
+  display:block;
+  font-size:13px;
+  margin-bottom:8px;
+}
+input[type="search"] {
+  width:100%;
+  padding:12px 15px;
+  border:1px solid var(--line);
+  background:var(--bg);
+  color:var(--text);
+  border-radius:9px;
+  min-width:0;
+}
+.filter-label { font-size:12px; color:var(--muted); margin:20px 0 9px; }
+.categories { display:flex; gap:8px; flex-wrap:wrap; }
+.categories button {
+  padding:7px 15px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  color:var(--text);
+  background:transparent;
+  font-size:13px;
+}
+.categories button[aria-pressed="true"] {
+  background:var(--text);
+  color:white;
+  border-color:var(--text);
+}
+.options {
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+.options label { font-size:13px; }
+select {
+  margin-left:7px;
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:var(--bg);
+  color:var(--text);
+}
+.results-bar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin:24px 0 16px;
+}
+.results-bar h3 { font-size:18px; margin:0; }
+#count { font-size:12px; color:var(--muted); }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+}
+.card {
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.cover {
+  height:180px;
+  display:grid;
+  place-items:center;
+  background:var(--peach);
+  padding:22px;
+}
+.cover img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  min-height:0;
+}
+.cover-paper {
+  background:var(--paper);
+  border-radius:6px;
+  padding:15px 25px;
+  box-shadow:5px 7px 0 #554A4210;
+  transform:rotate(-4deg);
+  text-align:center;
+}
+.cover-paper small {
+  display:block;
+  font-size:9px;
+  letter-spacing:2px;
+}
+.cover-paper strong {
+  display:block;
+  font-size:19px;
+  margin:7px 0;
+}
+.shapes { font-size:24px; color:var(--accent); letter-spacing:6px; }
+.content { padding:22px; flex:1; display:flex; flex-direction:column; }
+.badges { display:flex; gap:6px; flex-wrap:wrap; }
+.badge {
+  padding:3px 8px;
+  border-radius:5px;
+  font-size:11px;
+  background:var(--green);
+}
+.badge.topic { background:#F3EADF; }
+.card h3 { font-size:19px; margin:13px 0 7px; }
+.meta { font-size:12px; color:var(--muted); margin-bottom:10px; }
+.card p { font-size:13px; color:var(--muted); margin:0 0 20px; }
+.download {
+  margin-top:auto;
+  display:block;
+  text-align:center;
+  padding:10px;
+  border-radius:8px;
+  background:var(--text);
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+}
+.empty {
+  grid-column:1/-1;
+  padding:40px 24px;
+  text-align:center;
+  border:1px dashed #CDBBA8;
+  border-radius:14px;
+}
+.empty strong { font-size:18px; }
+.empty p { color:var(--muted); font-size:14px; }
+.reset {
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:8px 20px;
+  color:var(--text);
+  background:var(--paper);
+}
+.paid-note {
+  margin-top:24px;
+  padding:22px;
+  background:var(--green);
+  border-radius:12px;
+  font-size:14px;
+}
+.paid-note p { margin:5px 0 0; color:var(--muted); font-size:13px; }
+.guide {
+  background:#F3EBDD;
+  border-radius:16px;
+  padding:28px;
+  margin-bottom:40px;
+}
+.steps {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:25px;
+  margin-top:20px;
+}
+.steps strong { color:var(--accent); }
+.steps p { font-size:13px; color:var(--muted); margin-bottom:0; }
+.terms { padding-bottom:40px; }
+.terms p,.terms li { font-size:13px; color:var(--muted); }
+.terms ul { padding-left:22px; }
+.terms li { margin-bottom:8px; }
+details { border-bottom:1px solid var(--line); padding:15px 0; }
+summary { cursor:pointer; font-size:14px; }
+footer {
+  border-top:1px solid var(--line);
+  padding:25px 0;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+}
+a:focus-visible,button:focus-visible,input:focus-visible,
+select:focus-visible,summary:focus-visible {
+  outline:3px solid var(--accent);
+  outline-offset:4px;
+}
+@media(max-width:850px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:600px) {
+  header { align-items:flex-start; }
+  .brand { font-size:20px; }
+  nav { gap:12px; padding-top:5px; }
+  nav a { font-size:12px; }
+  .hero { padding:35px 0; }
+  .grid,.steps { grid-template-columns:1fr; }
+  .controls,.guide { padding:20px; }
+  .options { gap:12px; }
+  .options label { width:100%; display:flex; align-items:center; }
+  .options select { flex:1; }
+  .results-bar { align-items:flex-start; }
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <a class="brand" href="#">
-        小日慢學
-        <small>LITTLE DAYS</small>
-      </a>
-      <nav aria-label="主要導覽">
-        <a href="#materials">教材下載</a>
-        <a href="#terms">使用須知</a>
-      </nav>
-    </header>
+<div class="wrap">
+  <header>
+    <a class="brand" href="#">
+      小日慢學
+      <small>LITTLE DAYS</small>
+    </a>
+    <nav aria-label="主要導覽">
+      <a href="#materials">教材下載</a>
+      <a href="#terms">使用須知</a>
+    </nav>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div class="eyebrow">LITTLE MOMENTS, LITTLE GROWTH</div>
-        <h1>每天一點點，<br>陪孩子<span>慢慢學。</span></h1>
-        <p>
-          一份教材，一段好好陪伴的時光。<br>
-          跟著孩子的步調，一起探索與成長。
-        </p>
-        <a class="hero-link" href="#materials">挑一份教材，一起開始 →</a>
-      </section>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">LITTLE MOMENTS, LITTLE GROWTH</div>
+      <h1>每天一點點，<br>陪孩子<span>慢慢學。</span></h1>
+      <p>
+        注音、數感、情緒與生活練習，<br>
+        找一份適合孩子的教材，收藏一起成長的時光。
+      </p>
+    </section>
 
-      <div class="note">
-        教材可自行開啟下載，不必等待私訊回覆 ♡
+    <div class="note">
+      教材可自行開啟下載，不必等待私訊回覆 ♡
+    </div>
+
+    <section id="materials" class="library">
+      <h2>找一份共學小練習</h2>
+      <p class="intro">可以搜尋教材名稱，也可以依主題挑選。</p>
+
+      <div class="controls">
+        <label class="search-label" for="search">搜尋教材</label>
+        <input
+          id="search"
+          type="search"
+          placeholder="輸入關鍵字，例如：注音、數獨、情緒"
+        >
+
+        <div class="filter-label">主題分類</div>
+        <div class="categories" aria-label="主題分類">
+          <button type="button" data-category="all" aria-pressed="true">全部主題</button>
+          <button type="button" data-category="language" aria-pressed="false">注音與語文</button>
+          <button type="button" data-category="math" aria-pressed="false">數感與邏輯</button>
+          <button type="button" data-category="life" aria-pressed="false">生活與認知</button>
+          <button type="button" data-category="emotion" aria-pressed="false">情緒與表達</button>
+          <button type="button" data-category="craft" aria-pressed="false">小手與創作</button>
+          <button type="button" data-category="habit" aria-pressed="false">習慣與任務</button>
+        </div>
+
+        <div class="options">
+          <label for="access">
+            教材類型
+            <select id="access">
+              <option value="all">全部</option>
+              <option value="free">免費教材</option>
+              <option value="paid">付費教材</option>
+            </select>
+          </label>
+
+          <label for="sort">
+            排列方式
+            <select id="sort">
+              <option value="new">最新上架</option>
+              <option value="name">名稱排序</option>
+            </select>
+          </label>
+        </div>
       </div>
 
-      <section id="materials" class="library">
-        <h2>教材下載區</h2>
-        <p class="intro">找到適合孩子的小練習，讓共學自然融入日常。</p>
+      <div class="results-bar">
+        <h3 id="list-title">最新上架</h3>
+        <span id="count" role="status" aria-live="polite"></span>
+      </div>
 
-        <div class="tabs" aria-label="教材分類">
-          <button type="button" data-filter="all" aria-pressed="true">全部教材</button>
-          <button type="button" data-filter="free" aria-pressed="false">免費教材</button>
-          <button type="button" data-filter="paid" aria-pressed="false">付費教材</button>
+      <div id="materials-grid" class="grid"></div>
+
+      <noscript>
+        <p>
+          請啟用 JavaScript 以使用教材搜尋與分類，
+          或直接
+          <a href="https://drive.google.com/file/d/1Upvr_-EeuE817BJt-upTm0UJywgd19WI/view">
+            開啟親子共學教材
+          </a>。
+        </p>
+      </noscript>
+
+      <aside class="paid-note">
+        <strong>付費主題學習包，慢慢準備中。</strong>
+        <p>目前尚未開放購買。上架後會提供內容介紹、價格與購買方式。</p>
+      </aside>
+    </section>
+
+    <section class="guide">
+      <h2>三個小步驟，開始共學</h2>
+      <div class="steps">
+        <div>
+          <strong>01・找教材</strong>
+          <p>依主題或關鍵字搜尋，從孩子感興趣的內容開始。</p>
         </div>
-
-        <div class="grid">
-          <!-- 免費教材：日後可修改名稱、介紹與連結 -->
-          <article class="card" data-type="free">
-            <div class="cover" aria-hidden="true">
-              <div class="cover-paper">
-                <small>LITTLE DAYS</small>
-                <strong>親子共學</strong>
-                <div class="shapes">○ △ ☆</div>
-              </div>
-            </div>
-
-            <div class="content">
-              <span class="badge">免費分享</span>
-              <h3>親子共學教材</h3>
-              <p>
-                點開連結即可預覽教材，再依孩子的程度與興趣，
-                選擇適合的內容一起練習。
-              </p>
-              <a
-                class="download"
-                href="https://drive.google.com/file/d/1Upvr_-EeuE817BJt-upTm0UJywgd19WI/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >開啟教材・預覽與下載 ↗</a>
-            </div>
-          </article>
-
-          <!-- 付費區尚未開放，不提供付款或下載 -->
-          <article class="card" data-type="paid">
-            <div class="cover paid" aria-hidden="true">
-              <div class="cover-paper">
-                <small>COMING SOON</small>
-                <strong>主題學習包</strong>
-                <div class="shapes">1 2 3</div>
-              </div>
-            </div>
-
-            <div class="content">
-              <span class="badge soon">付費教材・籌備中</span>
-              <h3>更多共學時光，準備中</h3>
-              <p>
-                完整主題學習包將陸續推出，
-                上架後會提供教材介紹、價格與購買方式。
-              </p>
-              <div class="waiting">尚未開放購買</div>
-            </div>
-          </article>
+        <div>
+          <strong>02・下載檔案</strong>
+          <p>開啟教材連結後，使用下載功能儲存，依教材標示設定列印尺寸。</p>
         </div>
-      </section>
-
-      <section class="guide">
-        <h2>三個小步驟，開始共學</h2>
-        <div class="steps">
-          <div>
-            <strong>01・挑選教材</strong>
-            <p>從孩子感興趣的內容開始，不用一次全部完成。</p>
-          </div>
-          <div>
-            <strong>02・下載檔案</strong>
-            <p>開啟雲端硬碟連結後，使用下載功能儲存，依教材標示設定列印尺寸。</p>
-          </div>
-          <div>
-            <strong>03・一起練習</strong>
-            <p>依孩子的發展、興趣與當天狀態，彈性調整時間和難度。</p>
-          </div>
+        <div>
+          <strong>03・一起練習</strong>
+          <p>依孩子的發展、興趣與當天狀態，調整練習時間和難度。</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="terms" class="terms">
-        <h2>下載與使用須知</h2>
-        <p>本教材由「小日慢學 Little Days」用心製作。</p>
-        <ul>
-          <li>免費教材僅供個人、家庭及親子共學免費使用。</li>
-          <li>未經授權，請勿擅自修改、二次加工或移除品牌標示。</li>
-          <li>請勿重新上傳或轉傳教材檔案；歡迎分享本網站連結。</li>
-          <li>不得用於販售、營利或任何商業用途。</li>
-          <li>未來付費教材的購買與授權規則，會於商品頁另行說明。</li>
-        </ul>
+    <section id="terms" class="terms">
+      <h2>下載與使用須知</h2>
+      <p>本教材由「小日慢學 Little Days」用心製作。</p>
+      <ul>
+        <li>免費教材僅供個人、家庭及親子共學免費使用。</li>
+        <li>未經授權，請勿擅自修改、二次加工或移除品牌標示。</li>
+        <li>請勿重新上傳或轉傳教材檔案；歡迎分享本網站連結。</li>
+        <li>不得用於販售、營利或任何商業用途。</li>
+        <li>付費教材的購買與授權規則，將於各商品頁另行說明。</li>
+      </ul>
 
-        <details>
-          <summary>連結顯示「需要存取權」怎麼辦？</summary>
-          <p>請回到分享教材的原貼文留言告知，讓我們確認檔案分享權限。</p>
-        </details>
+      <details>
+        <summary>下載時顯示「需要存取權」怎麼辦？</summary>
+        <p>請回到分享教材的原貼文留言告知，讓我們確認檔案分享權限。</p>
+      </details>
 
-        <details>
-          <summary>孩子還不會完成教材，可以怎麼做？</summary>
-          <p>可以由大人先示範、改用口說或操作小物，也可以改天再試。請依孩子自身的發展情況調整，不需要急著完成。</p>
-        </details>
+      <details>
+        <summary>孩子還不會完成教材，可以怎麼做？</summary>
+        <p>可以由大人先示範、改用口說或操作小物，也可以改天再試。請依孩子自身的發展情況調整，不需要急著完成。</p>
+      </details>
 
-        <details>
-          <summary>可以分享心得或許願教材主題嗎？</summary>
-          <p>歡迎回到小日慢學原貼文分享作品、使用心得，或告訴我想要的主題！因為本身還有正職工作，會利用空檔盡可能一一回覆，謝謝你的等待 ♡</p>
-        </details>
-      </section>
-    </main>
+      <details>
+        <summary>可以分享心得或許願主題嗎？</summary>
+        <p>歡迎回到小日慢學原貼文分享作品、使用心得，或告訴我想要的主題！因為本身還有正職工作，會利用空檔盡可能一一回覆，謝謝你的等待 ♡</p>
+      </details>
+    </section>
+  </main>
 
-    <footer>
-      小日慢學 Little Days<br>
-      陪伴，是每天最溫柔的小事。<br>
-      © 2026 小日慢學 Little Days
-    </footer>
-  </div>
+  <footer>
+    小日慢學 Little Days<br>
+    陪伴，是每天最溫柔的小事。<br>
+    © 2026 小日慢學 Little Days
+  </footer>
+</div>
 
-  <script>
-    const buttons = document.querySelectorAll("[data-filter]");
-    const cards = document.querySelectorAll("[data-type]");
+<script>
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+新增教材的位置
 
-    buttons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const filter = button.dataset.filter;
+之後每增加一份教材，在 materials 陣列裡新增一筆。
+各筆資料之間，必須用英文逗號分隔。
 
-        buttons.forEach(function (item) {
-          item.setAttribute("aria-pressed", String(item === button));
-        });
+分類代碼：
+language = 注音與語文
+math     = 數感與邏輯
+life     = 生活與認知
+emotion  = 情緒與表達
+craft    = 小手與創作
+habit    = 習慣與任務
 
-        cards.forEach(function (card) {
-          card.hidden = filter !== "all" && card.dataset.type !== filter;
-        });
-      });
+同一份教材可填多個分類：
+categories: ["math", "craft"]
+
+type: "free" 代表免費，"paid" 代表付費。
+付費教材的 url 請填商品購買頁，勿填公開教材檔案。
+cover 可填封面圖片網址；沒有圖片時保留空字串。
+age、pages 尚未確認時，可保留空字串。
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
+
+const materials = [
+  {
+    title: "親子共學教材",
+    description: "點開連結預覽教材，依孩子的程度與興趣，選擇適合的內容一起練習。",
+    categories: [],
+    type: "free",
+    age: "",
+    pages: "",
+    date: "2026-10-19",
+    cover: "",
+    keywords: "親子 共學 練習",
+    url: "https://drive.google.com/file/d/1Upvr_-EeuE817BJt-upTm0UJywgd19WI/view?usp=sharing"
+  }
+];
+
+/* 下方為網站功能，新增教材時不需要修改。 */
+
+const categoryNames = {
+  language: "注音與語文",
+  math: "數感與邏輯",
+  life: "生活與認知",
+  emotion: "情緒與表達",
+  craft: "小手與創作",
+  habit: "習慣與任務"
+};
+
+const categoryColors = {
+  language: "#F2D4BF",
+  math: "#E6EBDC",
+  life: "#E7DFD2",
+  emotion: "#F0DDE0",
+  craft: "#F2E5BD",
+  habit: "#DBE6E8"
+};
+
+const search = document.getElementById("search");
+const access = document.getElementById("access");
+const sort = document.getElementById("sort");
+const grid = document.getElementById("materials-grid");
+const count = document.getElementById("count");
+const listTitle = document.getElementById("list-title");
+const categoryButtons = document.querySelectorAll("[data-category]");
+
+let selectedCategory = "all";
+
+function element(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function safeUrl(value) {
+  try {
+    const url = new URL(value, window.location.href);
+    if (url.protocol === "https:" || url.protocol === "http:") {
+      return url.href;
+    }
+  } catch (error) {}
+  return "";
+}
+
+function resetFilters() {
+  selectedCategory = "all";
+  search.value = "";
+  access.value = "all";
+  sort.value = "new";
+
+  categoryButtons.forEach(function(button) {
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.category === "all")
+    );
+  });
+
+  render();
+}
+
+function createCard(item) {
+  const card = element("article", "card");
+  const cover = element("div", "cover");
+  cover.setAttribute("aria-hidden", "true");
+
+  const firstCategory = item.categories[0];
+  cover.style.background =
+    categoryColors[firstCategory] || "#F2D4BF";
+
+  const coverUrl = safeUrl(item.cover);
+
+  if (item.cover && coverUrl) {
+    const image = document.createElement("img");
+    image.src = coverUrl;
+    image.alt = "";
+    image.loading = "lazy";
+    cover.append(image);
+  } else {
+    const paper = element("div", "cover-paper");
+    paper.append(
+      element("small", "", "LITTLE DAYS"),
+      element("strong", "", firstCategory
+        ? categoryNames[firstCategory]
+        : "親子共學"),
+      element("div", "shapes", "○ △ ☆")
+    );
+    cover.append(paper);
+  }
+
+  const content = element("div", "content");
+  const badges = element("div", "badges");
+
+  badges.append(
+    element("span", "badge",
+      item.type === "free" ? "免費分享" : "付費教材")
+  );
+
+  item.categories.forEach(function(category) {
+    if (categoryNames[category]) {
+      badges.append(
+        element("span", "badge topic", categoryNames[category])
+      );
+    }
+  });
+
+  content.append(badges, element("h3", "", item.title));
+
+  const metadata = [];
+  if (item.age) metadata.push("適用：" + item.age);
+  if (item.pages) metadata.push(item.pages);
+
+  if (metadata.length) {
+    content.append(element("div", "meta", metadata.join(" ｜ ")));
+  }
+
+  content.append(element("p", "", item.description));
+
+  const url = safeUrl(item.url);
+
+  if (url) {
+    const link = element(
+      "a",
+      "download",
+      item.type === "free"
+        ? "開啟教材・預覽與下載 ↗"
+        : "查看介紹與購買方式 ↗"
+    );
+
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    content.append(link);
+  } else {
+    content.append(element("div", "meta", "連結準備中"));
+  }
+
+  card.append(cover, content);
+  return card;
+}
+
+function render() {
+  const query = search.value.trim().toLocaleLowerCase("zh-TW");
+
+  const results = materials.filter(function(item) {
+    const matchesCategory =
+      selectedCategory === "all" ||
+      item.categories.includes(selectedCategory);
+
+    const matchesAccess =
+      access.value === "all" ||
+      item.type === access.value;
+
+    const searchable = [
+      item.title,
+      item.description,
+      item.keywords,
+      item.age,
+      ...item.categories.map(function(category) {
+        return categoryNames[category] || "";
+      })
+    ].join(" ").toLocaleLowerCase("zh-TW");
+
+    const matchesSearch = !query || searchable.includes(query);
+
+    return matchesCategory && matchesAccess && matchesSearch;
+  });
+
+  results.sort(function(a, b) {
+    if (sort.value === "name") {
+      return a.title.localeCompare(b.title, "zh-Hant");
+    }
+    return b.date.localeCompare(a.date);
+  });
+
+  grid.replaceChildren();
+  count.textContent = "共 " + results.length + " 份教材";
+
+  listTitle.textContent =
+    selectedCategory === "all"
+      ? (sort.value === "new" ? "最新上架" : "全部教材")
+      : categoryNames[selectedCategory];
+
+  if (!results.length) {
+    const empty = element("div", "empty");
+
+    const message = query
+      ? "沒有找到符合的教材"
+      : access.value === "paid"
+        ? "付費教材正在準備中 ♡"
+        : "這個分類的教材正在準備中 ♡";
+
+    empty.append(
+      element("strong", "", message),
+      element("p", "", "可以換個關鍵字或分類，看看其他共學小練習。")
+    );
+
+    const reset = element("button", "reset", "查看全部教材");
+    reset.type = "button";
+    reset.addEventListener("click", resetFilters);
+    empty.append(reset);
+    grid.append(empty);
+    return;
+  }
+
+  results.forEach(function(item) {
+    grid.append(createCard(item));
+  });
+}
+
+categoryButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    selectedCategory = button.dataset.category;
+
+    categoryButtons.forEach(function(item) {
+      item.setAttribute("aria-pressed", String(item === button));
     });
-  </script>
+
+    render();
+  });
+});
+
+search.addEventListener("input", render);
+access.addEventListener("change", render);
+sort.addEventListener("change", render);
+
+render();
+</script>
 </body>
 </html>
