@@ -715,5 +715,25 @@ sort.addEventListener("change", render);
 
 render();
 </script>
+  <!-- 教材按鈕點擊統計：只加入一次 -->
+<script>
+document.addEventListener('click', function (event) {
+  const link = event.target.closest('a.download');
+  if (!link) return;
+
+  const card = link.closest('.card');
+  const heading = card ? card.querySelector('h3') : null;
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'material_click', {
+      material_name: heading
+        ? heading.textContent.trim()
+        : '未命名教材',
+      link_url: link.href,
+      send_to: 'G-4B85542ZC1'
+    });
+  }
+});
+</script>
 </body>
 </html>
